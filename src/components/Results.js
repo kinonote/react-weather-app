@@ -2,7 +2,7 @@
 
   const {cityName,country,temperature,conditionText,icon}=results;
   return(
-    <div>
+    <>
       {cityName&&<div className="result-city">{cityName}</div>}
       {country&&<div className="result-country">{country}</div>}
       {temperature&&<div className="result-temp">{temperature}<span>℃</span></div>}
@@ -11,7 +11,7 @@
           <img src={icon} alt="icon"/>
           <span>{conditionText}</span>
         </div>}
-    </div>
+    </>
   );
 };
 
