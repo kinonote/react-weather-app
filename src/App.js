@@ -3,9 +3,11 @@ import axios from "axios";
 import Title from './components/Title';
 import Form from './components/Form';
 import Results from './components/Results';
+import Loading from "./components/Loading";
 import './App.css';
 
 function App() {
+  const [loading,setLoading]=useState("false");
   const [city,setCity]=useState("");
   const [results,setResults]=useState({
     country:"",
@@ -16,6 +18,7 @@ function App() {
   });
   const getWeather=(e)=>{
     e.preventDefault();
+    setLoading(true);
     axios.get(`http://api.weatherapi.com/v1/current.json?key=0ea0bc9c09b54d5984883022210608&q=${city}&aqi=no`)
     .then(res=>{
       setResults({
@@ -26,16 +29,17 @@ function App() {
         icon:res.data.current.condition.icon
       })
       setCity("");
+      setLoading(false);
     })
-    .catch(err=>alert("都市名を入力するところです。都市名は英語でお願いします。ページをリロードして、もう一度試してください。"))
+    .catch(err=>alert("都市名を入力する箇所です。都市名は英語でお願いします。ページをリロードして、もう一度試してください。"))
   }
 
   return (
     <div className="wrapper">
-      <div className="App">
+      <div className="App container">
         <Title /> 
         <Form setCity={setCity} getWeather={getWeather} city={city} />
-        <Results results={results} />
+        {loading ? <Loading />:<Results results={results} />}
       </div>
     </div>
   );
