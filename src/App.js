@@ -31,7 +31,7 @@ function App() {
       setCity("");
       setLoading(false);
     })
-    .catch(err=>alert("都市名を入力する箇所です。都市名は英語でお願いします。ページをリロードして、もう一度試してください。"))
+    .catch(err=>alert("英語で都市名を入力しよう！"))
   }
 
   return (
